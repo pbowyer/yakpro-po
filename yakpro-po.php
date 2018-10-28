@@ -62,7 +62,7 @@ $parser = (new ParserFactory)->create($parser_mode);
 //$traverser          = new PhpParser\NodeTraverser;
 $traverser          = new NodeTraverser;
 
-if ($conf->obfuscate_string_literal)    $prettyPrinter      = new myPrettyprinter;
+if ($conf->obfuscate_string_literal)    $prettyPrinter      = new myPrettyprinter(['obfuscate_string_literal_openssl' => $conf->obfuscate_string_literal_openssl]);
 //else                                    $prettyPrinter      = new PhpParser\PrettyPrinter\Standard;
 else                                    $prettyPrinter      = new PrettyPrinter\Standard;
 

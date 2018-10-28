@@ -21,6 +21,11 @@ class myPrettyprinter extends PhpParser\PrettyPrinter\Standard
         {
             $result .= mt_rand(0,1) ? "\x".dechex(ord($str{$i})) : "\\".decoct(ord($str{$i}));
         }
+
+        if ($this->options['obfuscate_string_literal_openssl']) {
+            $key    = md5(uniqid('prettyprinter', true));
+            $result = 'openssl_decrypt("'.@openssl_encrypt($result, 'AES128', $key).'", "AES128", "'.$key.'")';
+        }
         return $result;
     }
 
